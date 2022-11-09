@@ -1,0 +1,35 @@
+def move_all_balls(event):
+    global balls, w, h
+    """ передвигает все шарики на чуть-чуть """
+    for b in balls:
+        if b.nx == 1 and b.ny == 1:
+            dx = 1
+            dy = 1
+        elif b.nx == -1 and b.ny == 1:
+            dx = -1
+            dy = 1
+        elif b.nx == 1 and b.ny == -1:
+            dx = 1
+            dy = -1
+        else:
+            dx = -1
+            dy = -1
+
+        # Двигаем шарики
+        b.x = b.x + dx
+        b.y = b.y + dy
+        if b.x > w - b.r:
+            # print('Выход из окна вправо')
+            b.nx = -1
+        if b.x < b.r:
+            # print('Выход из окна влево')
+            b.nx = 1
+        if b.y > h - b.r:
+            b.ny = -1
+            # print('Выход из окна вниз')
+        if b.y < b.r:
+            # print('Выход из окна вверх')
+            b.ny = 1
+
+            # Перерисовка шариков
+        b.paint()
